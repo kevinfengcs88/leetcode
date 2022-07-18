@@ -11,3 +11,13 @@ I decided to start solving LeetCode problems "honestly" by imposing these restri
 
 ## Structure of this repository/code
 This repository contains `.java` files which have solutions to the LeetCode problems of the respective names. They are not intended to be compiled and ran, as there is no main method, nor does the class name match the file itself. Additionally, if I have multiple solutions for a problem, the corresponding file will have multiple functions (clearly distinguished from helper functions, as the parameters will be the same as the original). Comments will provide additional clarification between solutions.
+
+## Table of contents
+1. [twoSum](#twoSum)
+2. testing
+
+## twoSum
+example text
+
+## other content
+more example text
