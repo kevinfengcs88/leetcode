@@ -19,6 +19,12 @@ This repository contains `.java` files which have solutions to the LeetCode prob
 ## Table of contents
 1. [TwoSum](#TwoSum)
 2. [ReverseInteger](#ReverseInteger)
+3. [PalindromeNumber](PalindromeNumber.java)
+4. [MaximumDepthofBinaryTree](MaximumDepthofBinaryTree.java)
+5. [BinaryTreeInorderTraversal](BinaryTreeInorderTraversal.java)
+6. [ValidParentheses](ValidParentheses.java)
+7. [BuildArrayfromPermutation](BuildArrayfromPermutation.java)
+8. [ConcatenationofArray](ConcatenationofArray.java)
 
 ## [TwoSum](TwoSum.java)
 Two Sum is the quintessential hash table (often called hash map in programming languages) introduction problem. I've written up two solutions, one of which is the naive approach to the problem, solving it in O(n<sup>2</sup>) time. The other is the more optimal approach, solving it in linear, or O(n) time. In Two Sum, you are given an array of integer values, `nums`, and a target value, `target`. The goal is to return indices of the two numbers from `nums` such that they add up to `target`.
@@ -79,3 +85,8 @@ Build Array from Permutation is a classic O(n) problem that quite literally prov
 Although we already have the solution now, let's break down what `nums[nums[i]]` really means. So `nums[i]`, which is the index for the whole expression `nums[nums[i]]`, is a value itself, built off of the index, `i`. So it's just index-ception, if that makes any sense. We're using values, built off of indices, as indices. 
 
 The solution is very simple. We create an integer array with the same length as `nums`. I call mine `result` even though LeetCode told me to call it `ans` because I am a true advocate of anarchy. We then loop through `result` and just copy + paste the line that LeetCode gave us. In my case, each iteration of the loop executes `result[i] = nums[nums[i]]`. Finally, return the `result` array. 
+
+## [ConcatenationofArray](ConcatenationofArray.java)
+Concatenation of Array is similar to [BuildArrayfromPermutation](BuildArrayfromPermutation.java) in the sense that LeetCode spoonfeeds you the solution. In this problem we are given an integer array `nums` and we have to return another array, `ans`, where `ans[i] == nums[i]` and `ans[i + n] == nums[i]` where `n` is equal to the length of the `nums` array. It sounds a bit convoluted, and that's because it is. Taking a look at the example inputs and outputs that LeetCode provides, however, makes it much simpler. The `ans` array should just be the `nums` array, but repeated for a length of `2n`. So if the `nums` array is `[1, 2, 5]`, then the `ans` array should be `[1, 2, 5, 1, 2, 5]`.
+
+To solve this problem, we define `ans` as an array of length `nums.length * 2` and then perform a double loop (I used a for-loop nested in a while-loop) that fills the `ans` array. In my implementation, each for-loop goes through the `nums` array, while the outer loop (while-loop) goes through the `ans` array. This solution is generalized, meaning that it would work for an `ans` array of any size, so long as that size is `nums.length` multiplied by some positive integer. Due to the parameters of the question, however, we are forced to hard code the length of the `ans` array to be double that of the `nums` array. At the end, we return `ans`. 
