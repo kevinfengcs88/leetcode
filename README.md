@@ -42,4 +42,21 @@ We also immediately return false if the input integer is negative, as negative "
 ## [MaximumDepthofBinaryTree](MaximumDepthofBinaryTree.java)
 Maximum Depth of Binary Tree is a problem that requires very few lines of code to solve, so long as you use recursion. To solve this problem, we first need to ask ourselves what needs to happen at a high level (notice how reading just the first line of code to this solution makes little sense). We have to realize that we're not looking for the maximum depth of just any tree, but a *binary* tree. This means that the maximum depth will be found by following one of the root's two branches (left or right) down to its deepest leaf. In other words, we've already found the recursive call that needs to happen.
 
-The recursive call will be `return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;`, as we want the maximum depth between the left and right branches. We add 1 because we need to include the root node. Other than that, it's just a matter of making the recursive calls stop before any NullPointerExceptions occur (or just have the recursion go on forever for that matter). So at the start of the function, we add `if (root == null) return 0;` to stop the recursion once we hit the leaves of the tree. Keep in mind that the `root` variable refers to the node being passed into the recursive function; it only refers to the true root of the tree for the very first call.
+The recursive call will be 
+```
+return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+```
+, as we want the maximum depth between the left and right branches. We add 1 because we need to include the root node. Other than that, it's just a matter of making the recursive calls stop before any NullPointerExceptions occur (or just have the recursion go on forever for that matter). So at the start of the function, we add 
+```
+if (root == null) return 0;
+```
+to stop the recursion once we hit the leaves of the tree. Keep in mind that the `root` variable refers to the node being passed into the recursive function; it only refers to the true root of the tree for the very first call.
+
+## [BinaryTreeInorderTraversal](BinaryTreeInorderTraversal.java)
+Binary Tree Inorder Traversal is another recursive problem, although a little lengthier than the previous [MaximumDepthofBinaryTree](##MaximumDepthofBinaryTree). This solution also includes the usage of a recursive helper functions that actually does the recursion, while the main function simply calls the recursive function for the initial call. Because we need to return an ArrayList of the node's values when we perform an inorder traversal, this ArrayList must also be passed through each recursive call.
+
+We define `result` as the ArrayList that will hold all of the node's values (of type Integer). We then call the recursive function `inOrder` with two parameters: the root node and the `result` ArrayList. However, we haven't implemented anything in the `inOrder` function, so let's do that. Firstly, note that the function header of `inOrder` has a return type of void. We want this recursive function to simply alter the ArrayList that is being passed through it. This also allows us to have statements that return nothing, which is evident in the first line of code. Just like in [MaximumDepthofBinaryTree](##MaximumDepthofBinaryTree), we need a return statement to break the recursion in the case of a null node (leaf). But this time, we can have an empty return statement:
+```
+if (root == null) return;
+```
+After that, we implement the logic of an inorder traversal (left, root, right) by making a recursive call on `inOrder` for `root.left`, adding the the value of `root` to the `result` ArrayList, and then making a recursive call on `inOrder` for `root.right`. Lastly, we return `result` in the main function, `inorderTraversal`.
