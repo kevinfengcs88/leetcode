@@ -27,6 +27,7 @@ This repository contains `.java` files which have solutions to the LeetCode prob
 8. [ConcatenationofArray](#ConcatenationofArray)
 9. [ReverseString](#ReverseString)
 10. [DeleteNodeinaLinkedList](#DeleteNodeinaLinkedList)
+11. [ReverseLinkedList](#ReverseLinkedList)
 
 ## [TwoSum](TwoSum.java)
 Two Sum is the quintessential hash table (often called hash map in programming languages) introduction problem. I've written up two solutions, one of which is the naive approach to the problem, solving it in O(n<sup>2</sup>) time. The other is the more optimal approach, solving it in linear, or O(n) time. In Two Sum, you are given an array of integer values, `nums`, and a target value, `target`. The goal is to return indices of the two numbers from `nums` such that they add up to `target`.
@@ -106,3 +107,12 @@ Delete Node in a Linked List is a small twist on the traditional way to delete a
 As the problem's title implies, we need to delete a node from a singly-linked list. However, we are not given a reference to the head of the linked list, and instead, we are given a reference to the node that is to be deleted. This also means that we do not have a reference to the node prior to the node that is to be deleted. In terms of lines of code, this means our solution is going to be twice as long as if we did have a reference to the head or the node prior to the node to be deleted!
 
 There is a simple workaround to only having a reference to the node that needs to be deleted. If we set the `.val` of the node to the next node's value and then change the current node's `.next` reference to be `.next.next`, then the node is effectively deleted.
+
+## [ReverseLinkedList](ReverseLinkedList.java)
+Reverse Linked List is a problem that can be solved in several, fundamentally different ways. Given the head of a singly-linked list, we have to reverse the list and also return the reversed list. We could cheat a little bit by using a stack and rebuilding an entirely new linked list, but considering that the problem states that we have to "reverse the list" rather than "build a new linked list," I made a solution that does the former.
+
+The overarching concept of solving this problem is that we need three separate pointers at all times. We call these three pointers `prev`, `head` (already defined by the function header), and `next`. As it sounds like, they reference nodes in that order (although not at all times, since the function moves pointers around). We start by pointing `prev` to null, and beginning a loop that only terminates once `head` is null. In the loop, we create the `next` node and set that to `head.next`. Since we want to reverse the linked list, the `.next` reference of `head` should point towards null (it becomes the new tail of the linked list). Another way to think about this is if linked lists' arrows face toward the right, then we want all the arrows to face the left. 
+
+After that, we set `prev` to `head` and `head` to `next`. This step effectively pushes both `prev` and `head` forward one node. `next` has not yet been "incremented" forward, as it occurs at the beginning of each loop. Eventually, one iteration of the loop will cause the `next` node to point to null, as `head.next` will actually point to null (meaning the code is currently working on the original tail of the linked list). And since `head` is set to `next` at the end of the loop, `head` will also point to null, and the loop will terminate before it can perform another iteration.
+
+Since both `head` and `next` point to null, `prev` is the only pointer that still points to a node, and it is precisely pointing to the new head of the reversed linked list. We return `prev` at the end of the solution.
