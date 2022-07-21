@@ -19,13 +19,14 @@ This repository contains `.java` files which have solutions to the LeetCode prob
 ## Table of contents
 1. [TwoSum](#TwoSum)
 2. [ReverseInteger](#ReverseInteger)
-3. [PalindromeNumber](PalindromeNumber.java)
-4. [MaximumDepthofBinaryTree](MaximumDepthofBinaryTree.java)
-5. [BinaryTreeInorderTraversal](BinaryTreeInorderTraversal.java)
-6. [ValidParentheses](ValidParentheses.java)
-7. [BuildArrayfromPermutation](BuildArrayfromPermutation.java)
-8. [ConcatenationofArray](ConcatenationofArray.java)
-9. [ReverseString](ReverseString.java)
+3. [PalindromeNumber](#PalindromeNumber)
+4. [MaximumDepthofBinaryTree](#MaximumDepthofBinaryTree)
+5. [BinaryTreeInorderTraversal](#BinaryTreeInorderTraversal)
+6. [ValidParentheses](#ValidParentheses)
+7. [BuildArrayfromPermutation](#BuildArrayfromPermutation)
+8. [ConcatenationofArray](#ConcatenationofArray)
+9. [ReverseString](#ReverseString)
+10. [DeleteNodeinaLinkedList](#DeleteNodeinaLinkedList)
 
 ## [TwoSum](TwoSum.java)
 Two Sum is the quintessential hash table (often called hash map in programming languages) introduction problem. I've written up two solutions, one of which is the naive approach to the problem, solving it in O(n<sup>2</sup>) time. The other is the more optimal approach, solving it in linear, or O(n) time. In Two Sum, you are given an array of integer values, `nums`, and a target value, `target`. The goal is to return indices of the two numbers from `nums` such that they add up to `target`.
@@ -90,7 +91,7 @@ The solution is very simple. We create an integer array with the same length as 
 ## [ConcatenationofArray](ConcatenationofArray.java)
 Concatenation of Array is similar to [BuildArrayfromPermutation](BuildArrayfromPermutation.java) in the sense that LeetCode spoonfeeds you the solution. In this problem we are given an integer array `nums` and we have to return another array, `ans`, where `ans[i] == nums[i]` and `ans[i + n] == nums[i]` where `n` is equal to the length of the `nums` array. It sounds a bit convoluted, and that's because it is. Taking a look at the example inputs and outputs that LeetCode provides, however, makes it much simpler. The `ans` array should just be the `nums` array, but repeated for a length of `2n`. So if the `nums` array is `[1, 2, 5]`, then the `ans` array should be `[1, 2, 5, 1, 2, 5]`.
 
-To solve this problem, we define `ans` as an array of length `nums.length * 2` and then perform a double loop (I used a for-loop nested in a while-loop) that fills the `ans` array. In my implementation, each for-loop goes through the `nums` array, while the outer loop (while-loop) goes through the `ans` array. This solution is generalized, meaning that it would work for an `ans` array of any size, so long as that size is `nums.length` multiplied by some positive integer. Due to the parameters of the question, however, we are forced to hard code the length of the `ans` array to be double that of the `nums` array. At the end, we return `ans`. 
+To solve this problem, we define `ans` (I've given up my anarchic ways) as an array of length `nums.length * 2` and then perform a double loop (I used a for-loop nested in a while-loop) that fills the `ans` array. In my implementation, each for-loop goes through the `nums` array, while the outer loop (while-loop) goes through the `ans` array. This solution is generalized, meaning that it would work for an `ans` array of any size, so long as that size is `nums.length` multiplied by some positive integer. Due to the parameters of the question, however, we are forced to hard code the length of the `ans` array to be double that of the `nums` array. At the end, we return `ans`. 
 
 ## [ReverseString](ReverseString.java)
 Reverse String is an excellent test of basic in-place array manipulation. In this problem, we are tasked with reversing an input string, `s`, which is formatted as an array of characters. We have to do this in-place with only O(1) extra memory. As you can already guess, the O(1) extra memory will be dedicated to a temporary character variables used while performing swap operations in the array, `s`. If we weren't required to execute this in-place, then swapping wouldn't be necessary.
@@ -98,3 +99,10 @@ Reverse String is an excellent test of basic in-place array manipulation. In thi
 First, we define a character, `temp`, which will store the value of one of the characters in `s` that we want to swap. Speaking of swapping, we want to only swap up until half of the length of `s`, minus 1 (this is inclusive). This works for both odd and even length arrays. We use a for-loop to accomplish this, with `i` incrementing from 0 until `s.length/2 - 1`. For each iteration of the loop, we store `s[i]` into `temp`, then store `s[s.length - i - 1]` into `s[i]`, and finally, store `temp` into `s[s.length - i - 1]`. If the expression `s.length - i - 1` doesn't make sense, consider how we can dynamically compute the opposing index that we want each character (at index `i`) to be swapped with. `s.length` goes out of bounds, so we subtract 1 from it, and then we subtract `i` to get the exact index of the opposing character.
 
 For example, in the string "hello," the character 'h' is at index 0 (which is `i`), and the character 'o' is at index 4. We can get 4 based off of `i` by taking `s.length`, which is 5, subtracting 1 (to get the index in legal array bounds), and finally subtracting `i` (so we subtract 0). 5 - 1 - 0 = 4. As we are doing this in-place, we do not have to return anything (also affirmed by the void return type of the function header). 
+
+## [DeleteNodeinaLinkedList](DeleteNodeinaLinkedList.java)
+Delete Node in a Linked List is a small twist on the traditional way to delete a node from a linked list. Normally, if you need to delete a node from a linked list, you just set the `next` reference of the previous node of the node to be deleted to be `.next.next`. In other words, if a linked list looked like this: `A -> B -> C` and you wanted to delete node B, you would perform something like `A.next = A.next.next`. 
+
+As the problem's title implies, we need to delete a node from a singly-linked list. However, we are not given a reference to the head of the linked list, and instead, we are given a reference to the node that is to be deleted. This also means that we do not have a reference to the node prior to the node that is to be deleted. In terms of lines of code, this means our solution is going to be twice as long as if we did have a reference to the head or the node prior to the node to be deleted!
+
+There is a simple workaround to only having a reference to the node that needs to be deleted. If we set the `.val` of the node to the next node's value and then change the current node's `.next` reference to be `.next.next`, then the node is effectively deleted.
