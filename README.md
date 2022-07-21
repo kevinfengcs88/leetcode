@@ -72,3 +72,10 @@ If the code runs through the whole loop without returning false, then we should 
 ```
 return stack.isEmpty();
 ```
+
+## [BuildArrayfromPermutation](BuildArrayfromPermutation.java)
+Build Array from Permutation is a classic O(n) problem that quite literally provides you with the solution in the problem's description. The idea is that given an array of integers, `nums`, return a new array of integers built as a zero-based permutation of `nums`. If this doesn't make sense, don't worry. LeetCode provides you with the answer, funnily enough. Here's a quote directly from the website: "build an array `ans` of the **same length** where `ans[i] = nums[nums[i]]`."
+
+Although we already have the solution now, let's break down what `nums[nums[i]]` really means. So `nums[i]`, which is the index for the whole expression `nums[nums[i]]`, is a value itself, built off of the index, `i`. So it's just index-ception, if that makes any sense. We're using values, built off of indices, as indices. 
+
+The solution is very simple. We create an integer array with the same length as `nums`. I call mine `result` even though LeetCode told me to call it `ans` because I am a true advocate of anarchy. We then loop through `result` and just copy + paste the line that LeetCode gave us. In my case, each iteration of the loop executes `result[i] = nums[nums[i]]`. Finally, return the `result` array. 
