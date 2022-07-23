@@ -28,9 +28,10 @@ This repository contains `.java` files which have solutions to the LeetCode prob
 9. [ReverseString](#ReverseString)
 10. [DeleteNodeinaLinkedList](#DeleteNodeinaLinkedList)
 11. [ReverseLinkedList](#ReverseLinkedList)
+12. [SingleNumber](#SingleNumber)
 
 ## [TwoSum](TwoSum.java)
-Two Sum is the quintessential hash table (often called hash map in programming languages) introduction problem. I've written up two solutions, one of which is the naive approach to the problem, solving it in O(n<sup>2</sup>) time. The other is the more optimal approach, solving it in linear, or O(n) time. In Two Sum, you are given an array of integer values, `nums`, and a target value, `target`. The goal is to return indices of the two numbers from `nums` such that they add up to `target`.
+Two Sum is the quintessential hash table (otherwise known as a hash map or dictionary) introduction problem. I've written up two solutions, one of which is the naive approach to the problem, solving it in O(n<sup>2</sup>) time. The other is the more optimal approach, solving it in linear, or O(n) time. In Two Sum, you are given an array of integer values, `nums`, and a target value, `target`. The goal is to return indices of the two numbers from `nums` such that they add up to `target`.
 
 In the naive approach, we simply perform a doubly-nested for-loop that iterates over every combination of two indices, until we find two that add up to the target in question. We store these two indices in an array of length 2 and return it. Though quite fast for small input sizes, this becomes much slower, very quickly (exponentially slower). 
 
@@ -116,3 +117,26 @@ The overarching concept of solving this problem is that we need three separate p
 After that, we set `prev` to `head` and `head` to `next`. This step effectively pushes both `prev` and `head` forward one node. `next` has not yet been "incremented" forward, as it occurs at the beginning of each loop. Eventually, one iteration of the loop will cause the `next` node to point to null, as `head.next` will actually point to null (meaning the code is currently working on the original tail of the linked list). And since `head` is set to `next` at the end of the loop, `head` will also point to null, and the loop will terminate before it can perform another iteration.
 
 Since both `head` and `next` point to null, `prev` is the only pointer that still points to a node, and it is precisely pointing to the new head of the reversed linked list. We return `prev` at the end of the solution.
+
+## [SingleNumber](SingleNumber.java)
+SingleNumber is a fairly simple problem to solve, especially after solving [TwoSum](#TwoSum) and learning about hash tables/dictionaries. Given an integer array, `nums`, we have to return the one element that only appears once (the rest of the elements all appear exactly twice). Using a hash table to keep track of how many times each element appears would seem like the obvious solution. However, one stipulation that LeetCode makes is that your solution must not only run in O(n) time, but also take up constant extra space, or O(1) extra space. A hash table would take up O(n) extra space.
+
+I've included two solutions in the file, one of which utilizes a Java HashMap that would otherwise be a good solution had LeetCode's stipulation not existed. Regardless, this first solution still demonstrates good problem-solving skills, so I'll still provide explanations for both. There is a third solution which is even more naive than the hash table one and it involves a double for-loop, similar to the naive solution in [TwoSum](#TwoSum).
+
+For the first solution, we create a HashMap that takes `<Integer, Integer>` key-value pairs. We then loop through the `nums` array, adding entries depending on whether or not the HashMap already contains `nums[i]` as a key. If the HashMap already contains the key, then we set 2 as the value, otherwise, we set 1 as the value. We then exit the loop and then get the only key for which the HashMap has a value of 1 for.
+
+Since there is no `getKey()` function in the HashMap's library, we have to create our own function that relies on the `getKey()` function that pertains to `Map.Entry` objects. In the `getKey()` helper function, we loop through each `entry` object in the iterable object created by the `entrySet()` method. If the value we pass into the helper function is the same as the value of the current `entry` object, then we return the key of the current `entry` object. We return null if the value `V` does not exist in the `entrySet`. If any of this sounds confusing, you can reference [this article](https://www.techiedelight.com/get-map-key-from-value-java/), which lists several different ways to get a key from a value in a Java HashMap (the first method is the helper function I just explained).
+
+But we can do better than this. To code up a solution that only takes an extra O(1) space, we have to limit ourselves to using variables/data structures that do not take up space as a function of `nums.length`. This solution is very short, so I feel that it's appropriate to paste the entirety of the code below:
+```
+int result = 0;
+for (int i = 0; i < nums.length; i++) result ^= nums[i];
+return result; 
+```
+More than 90% of this code is extremely basic&mdash;the first line defines an integer set to 0, the last line returns that integer, and the middle line iterates through the `nums` array. That's because all the magic happens everytime the loop runs: `result ^= nums[i]` does all of the work for us. But what does `^=` mean? What does it do?
+
+`^` is the Java bitwise XOR operator (usually `^` in other programming languages as well). [Bitwise operators](https://www.programiz.com/java-programming/bitwise-operators) compare bits of two operands and output a value depending on the type of bitwise operator that is being used. In the case of XOR, if two bits are different (0 and 1 or 1 and 0), it returns 1. Otherwise, if the two bits are the same (0 and 0 or 1 and 1), it returns 0. For all the integers in `nums`, we can chain together one long XOR expression using `^=` to our `result` variable and then return it. So in the case of the first example on LeetCode, we would want to compute `2^2^1`, or in the case of the second example on LeetCode, we would want to compute `4^1^2^1^2`.
+
+Why does this work? Well, with the bitwise XOR operator, if two numbers are the same, then they will effectively "cancel out" each other as the expression returns 0. `0 ^ foo`, where `foo` is any integer that is not 0, will always return `foo`. See where this is going? All of the integers that appear twice will negate each other, computing to 0, which is XORed against `foo`, ultimately returning `foo`. If you want a visual explanation, I would recommend checking out this [timestamped video from TECH DOSE](https://youtu.be/krgK0UlfNYY?t=201).
+
+`^=` effectively chains the integer on its right hand-side to the expression on the left-hand side. We iterate through all of the elements in `nums`, which leaves the one element that only appears once in `result`. We return `result`. 
