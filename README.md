@@ -12,7 +12,7 @@ I decided to start solving LeetCode problems "honestly" by imposing these restri
 - I can check the LeetCode forums for the problem **once, and only once** I have submitted an accepted solution (ej. to improve big O)
 
 ## Structure of this repository/code
-This repository contains `.java` files which have solutions to the LeetCode problems of their respective names, minus the spaces. They are not intended to be compiled and ran, as there is no main method, nor does the class name match the file itself. In the rare case that I have multiple solutions for a problem, there will be multiple functions in that file, denoted by comments as separate solutions. Otherwise, multiple functions in a file indicates that there is/are (a) helper function(s) that are used in the solution. The order of the problems that follow is arbitrary.
+This repository contains `.java` files which have solutions to the LeetCode problems of their respective names, minus the spaces. They are not intended to be compiled and ran, as there is no main method and the files generate [BOM characters](https://stackoverflow.com/questions/1992933/illegal-character-when-trying-to-compile-java-code) upon creation. In the rare case that I have multiple solutions for a problem, there will be multiple functions in that file, denoted by comments as separate solutions. Otherwise, multiple functions in a file indicates that there is/are (a) helper function(s) that are used in the solution. The order of the problems that follow is arbitrary.
 
 ***
 
