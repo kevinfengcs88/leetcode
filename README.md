@@ -139,4 +139,4 @@ More than 90% of this code is extremely basic&mdash;the first line defines an in
 
 Why does this work? Well, with the bitwise XOR operator, if two numbers are the same, then they will effectively "cancel out" each other as the expression returns 0. `0 ^ foo`, where `foo` is any integer that is not 0, will always return `foo`. See where this is going? All of the integers that appear twice will negate each other, computing to 0, which is XORed against `foo`, ultimately returning `foo`. If you want a visual explanation, I would recommend checking out this [timestamped video from TECH DOSE](https://youtu.be/krgK0UlfNYY?t=201).
 
-`^=` effectively chains the integer on its right hand-side to the expression on the left-hand side. We iterate through all of the elements in `nums`, which leaves the one element that only appears once in `result`. We return `result`. 
+`^=` effectively chains the integer on its right-hand side to the expression on the left-hand side. We iterate through all of the elements in `nums`, which, by the nature of the bitwise XOR operator, leaves the one element that only appears once in `result`. At the end of the function, we return `result`. 
