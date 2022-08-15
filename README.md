@@ -29,6 +29,7 @@ This repository contains `.java` files which have solutions to the LeetCode prob
 10. [DeleteNodeinaLinkedList](#DeleteNodeinaLinkedList)
 11. [ReverseLinkedList](#ReverseLinkedList)
 12. [SingleNumber](#SingleNumber)
+13. [SubrectangleQueries](#SubrectangleQueries)
 
 ## [TwoSum](TwoSum.java)
 Two Sum is the quintessential introductory hash table (otherwise known as a hash map or dictionary) problem. I've written up two solutions, one of which is the naive approach to the problem, solving it in O(n<sup>2</sup>) time. The other is the more optimal approach, solving it in linear, or O(n) time. In Two Sum, you are given an array of integer values, `nums`, and a target value, `target`. The goal is to return indices of the two numbers from `nums` (these two numbers will always exist with LeetCode's test cases) such that they add up to `target`.
@@ -140,3 +141,13 @@ Most of this code is extremely basic&mdash;the first line defines an integer set
 Why does this work? Well, with the bitwise XOR operator, if two numbers are the same, then they will effectively "cancel out" each other as the expression returns 0. `0 ^ foo`, where `foo` is any integer that is not 0, will always return `foo`. See where this is going? All of the integers that appear twice will negate each other, computing to 0, which is XORed against `foo`, ultimately returning `foo`. If you want a visual explanation, I would recommend checking out this [timestamped video from TECH DOSE](https://youtu.be/krgK0UlfNYY?t=201).
 
 The `^=` operator effectively chains the integer on its right-hand side to the expression its left-hand side. We iterate through all of the elements in `nums`, which, by the nature of the bitwise XOR operator, leaves the one element that only appears once in `result`. At the end of the function, we return `result`. 
+
+## [SubrectangleQueries](SubrectangleQueries.java)
+SubrectangleQueries is the OOP (object-oriented programming) problem that we encounter in LeetCode (sorting by acceptance rate from high to low). Unlike other algorithm problems, we aren't tasked with coding up a solution to a function that will solve a specific problem. Instead, we have to implement a class that fulfills the "Subrectangle Query library." This is broken down into three separate functions that we have to complete. The first is a constructor, the second is a function, `updateSubrectangle` that will update a subrectangle in the given matrix, and the third is a function, `getValue`, that will simply return the element at a specific index (indicated by `row` and `col`).
+
+For the constructor method, we simply have to "link" the 2D matrix, `rectangle` parameter to a private 2D matrix. I've called this private matrix `r`. `updateSubrectangle` must update all values in a subrectangle with the integer `newValue`. Since the test cases are 0-indexed (just like any array in Java), we just need to use a double for-loop that iterates through all of the elements of the subrectangle and replaces them with `newValue`. The outer loop will iterate through the rows, ranging from `row1` (the starting row index) to `row2` (the ending row index). We have to be careful with the termination condition of this for-loop, as it needs to be inclusive of the `row2` index. If we don't include the `row2` index, then the subrectangle that we select will be one row too short. The same logic applies to columns, so `col2` must be included in the inner for-loop. Inside the inner for-loop, we just need to set `r[i][j]` to `newValue`, where `i` is the outer for-loop counter, and `j` is the inner for-loop counter.
+
+Lastly, the `getValue` function consists of returning the item in `r` at row `row` and column `col`. This is achieved in one line with:
+```
+return r[row][col];
+```
