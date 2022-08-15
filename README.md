@@ -133,7 +133,7 @@ int result = 0;
 for (int i = 0; i < nums.length; i++) result ^= nums[i];
 return result; 
 ```
-More than 90% of this code is extremely basic&mdash;the first line defines an integer set to 0, the last line returns that integer, and the middle line iterates through the `nums` array. That's because all the magic happens everytime the loop runs: `result ^= nums[i]` does all of the work for us. But what does `^=` mean? What does it do?
+Most of this code is extremely basic&mdash;the first line defines an integer set to 0, the last line returns that integer, and the middle line iterates through the `nums` array. That's because all the magic that actually solves the problem occurs everytime the loop runs. To be specific, `result ^= nums[i]` is the line of code that does everything. But what does `^=` mean? What does it accomplish for this problem in particular?
 
 `^` is the Java bitwise XOR operator (usually `^` in other programming languages as well). [Bitwise operators](https://www.programiz.com/java-programming/bitwise-operators) compare bits of two operands and output a value depending on the type of bitwise operator that is being used. In the case of XOR, if two bits are different (0 and 1 or 1 and 0), it returns 1. Otherwise, if the two bits are the same (0 and 0 or 1 and 1), it returns 0. For all the integers in `nums`, we can chain together one long XOR expression using `^=` to our `result` variable and then return it. So in the case of the first example on LeetCode, we would want to compute `2^2^1`, or in the case of the second example on LeetCode, we would want to compute `4^1^2^1^2`.
 
