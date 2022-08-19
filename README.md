@@ -30,6 +30,7 @@ This repository contains `.java` files which have solutions to the LeetCode prob
 11. [ReverseLinkedList](#ReverseLinkedList)
 12. [SingleNumber](#SingleNumber)
 13. [SubrectangleQueries](#SubrectangleQueries)
+14. [SubtracttheProductandSumofDigitsofanInteger](#SubtracttheProductandSumofDigitsofanInteger)
 
 ## [TwoSum](TwoSum.java)
 Two Sum is the quintessential introductory hash table (otherwise known as a hash map or dictionary) problem. I've written up two solutions, one of which is the naive approach to the problem, solving it in O(n<sup>2</sup>) time. The other is the more optimal approach, solving it in linear, or O(n) time. In Two Sum, you are given an array of integer values, `nums`, and a target value, `target`. The goal is to return indices of the two numbers from `nums` (these two numbers will always exist with LeetCode's test cases) such that they add up to `target`.
