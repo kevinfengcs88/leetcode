@@ -153,7 +153,7 @@ Lastly, the `getValue` function consists of returning the item in `r` at row `ro
 return r[row][col];
 ```
 
-## [Subtract the Product and Sum of Digits of an Integer](SubtracttheProductandSumofDigitsofanInteger.java)
+## [SubtracttheProductandSumofDigitsofanInteger](SubtracttheProductandSumofDigitsofanInteger.java)
 Subtract the Product and Sum of Digits of an Integer is a ridiculously long name for a coding problem; typing out the name may prove to be more difficult than solving the actual problem itself. In this problem, we are tasked with returning an expression:
 ```
 product - sum
