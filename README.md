@@ -11,6 +11,8 @@ I decided to start solving LeetCode problems "honestly" by imposing these restri
 - I can search for big picture programming concepts, like algorithms or data structures (only high level, NOT the problem itself)
 - I can check the LeetCode forums for the problem **once, and only once** I have submitted an accepted solution (ej. to improve big O)
 
+I've also written a [Medium article](https://medium.com/nerd-for-tech/avoiding-leetcode-forums-5a052ecf25c0) about this repository.
+
 ## Structure of this repository/code
 This repository contains `.java` files which have solutions to the LeetCode problems of their respective names, minus the spaces. They are not intended to be compiled and ran, as there is no main method and the files generate [BOM characters](https://stackoverflow.com/questions/1992933/illegal-character-when-trying-to-compile-java-code) upon creation. In the rare case that I have multiple solutions for a problem, there will be multiple functions in that file, denoted by comments as separate solutions. Otherwise, multiple functions in a file indicates that there is/are (a) helper function(s) that are used in the solution. The order of the problems that follow is arbitrary.
 
@@ -34,7 +36,7 @@ This repository contains `.java` files which have solutions to the LeetCode prob
 15. [HowManyNumbersAreSmallerThantheCurrentNumber](#HowManyNumbersAreSmallerThantheCurrentNumber)
 
 ## [TwoSum](TwoSum.java)
-Two Sum is the quintessential introductory hash table (otherwise known as a hash map or dictionary) problem. I've written up two solutions, one of which is the naive approach to the problem, solving it in O(n<sup>2</sup>) time. The other is the more optimal approach, solving it in linear, or O(n) time. In Two Sum, you are given an array of integer values, `nums`, and a target value, `target`. The goal is to return indices of the two numbers from `nums` (these two numbers will always exist with LeetCode's test cases) such that they add up to `target`.
+Two Sum is the quintessential introductory hash table problem. I've written up two solutions, one of which is the naive approach to the problem, solving it in O(n<sup>2</sup>) time. The other is the more optimal approach, solving it in linear, or O(n) time. In Two Sum, you are given an array of integer values, `nums`, and a target value, `target`. The goal is to return indices of the two numbers from `nums` (these two numbers will always exist with LeetCode's test cases) such that they add up to `target`.
 
 In the naive approach, we simply perform a double for-loop that iterates over every combination of two indices, until we find the two that add up to the target in question. We store these two indices in an array of length 2 and return it. Though quite fast for small input sizes, this becomes much slower, very quickly (exponentially slower as input size increases). 
 
